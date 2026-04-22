@@ -320,185 +320,125 @@
     border: 1px solid rgba(201,169,110,0.06);
     animation: orbPulse 4s ease infinite 0.5s;
   }
-  @keyframes orbPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.05);opacity:0.7} }
+  @keyframes orbPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.05);opacity:0.5} }
+
   .orb-inner {
-    font-family: 'Cinzel', serif;
-    font-size: 13px; letter-spacing: 0.3em;
-    color: var(--gold);
     text-align: center;
-    z-index: 1;
+    font-family: 'Cinzel', serif;
+    font-size: 14px; letter-spacing: 0.4em;
+    color: var(--gold);
   }
-  .orb-inner .big { font-size: 48px; display: block; font-weight: 700; line-height: 1; }
+  .orb-inner .big { font-size: 40px; display: block; margin-bottom: 10px; }
 
   /* PRODUCTS */
-  .products-section { background: var(--deep-blue); }
-  .products-header { text-align: center; max-width: 600px; margin: 0 auto 70px; }
-  .products-header .section-line { margin: 0 auto 28px; }
+  .products-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
-    max-width: 1200px; margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   .product-card {
-    background: linear-gradient(145deg, rgba(26,37,64,0.6), rgba(10,14,26,0.9));
+    background: var(--glass);
     border: 1px solid var(--glass-border);
-    overflow: hidden;
+    padding: 30px;
     position: relative;
-    transition: transform 0.4s, box-shadow 0.4s;
-    cursor: none;
+    transition: transform 0.4s, border-color 0.4s;
+    display: flex; flex-direction: column;
   }
-  .product-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.25); }
-  .product-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0; transition: opacity 0.4s;
+  .product-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-dim);
+    background: rgba(201,169,110,0.1);
   }
-  .product-card:hover::before { opacity: 1; }
   .product-img {
-    height: 260px;
-    background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.12) 0%, transparent 70%), var(--navy);
+    height: 280px;
+    margin-bottom: 24px;
     display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
+    position: relative;
   }
-  .product-img-icon {
-    font-size: 64px;
-    filter: drop-shadow(0 0 30px rgba(201,169,110,0.4));
-    animation: bottleFloat 3s ease infinite;
+  .product-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    transition: transform 0.5s;
   }
-  @keyframes bottleFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .product-card:hover .product-img img { transform: scale(1.05); }
   .product-badge {
-    position: absolute; top: 16px; right: 16px;
-    background: var(--gold);
-    color: var(--navy);
-    font-family: 'Cinzel', serif;
-    font-size: 9px; letter-spacing: 0.2em;
-    padding: 5px 12px;
+    position: absolute; top: 0; right: 0;
+    background: var(--gold); color: var(--navy);
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    padding: 4px 12px;
   }
-  .product-info { padding: 28px; }
+  .product-info { flex-grow: 1; }
   .product-name {
     font-family: 'Cinzel', serif;
-    font-size: 18px; font-weight: 500;
-    color: var(--white); margin-bottom: 6px;
+    font-size: 18px; letter-spacing: 0.1em;
+    color: var(--white); margin-bottom: 8px;
   }
   .product-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px; font-style: italic;
-    color: var(--gold); opacity: 0.8;
-    margin-bottom: 14px;
+    font-size: 11px; color: var(--gold);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 16px;
   }
-  .product-desc { font-size: 12px; line-height: 1.9; color: var(--cream); opacity: 0.6; margin-bottom: 20px; }
-  .product-notes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
-  .note-tag {
-    font-size: 10px; letter-spacing: 0.2em;
-    padding: 4px 12px;
-    border: 1px solid var(--glass-border);
-    color: var(--gold); opacity: 0.7;
+  .product-desc {
+    font-size: 13px; line-height: 1.8;
+    color: var(--cream); opacity: 0.7;
+    margin-bottom: 20px;
   }
-  .product-footer { display: flex; align-items: center; justify-content: space-between; }
-  .product-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px; color: var(--gold-light);
+  .product-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: space-between;
   }
-  .product-price small { font-size: 13px; opacity: 0.6; font-family: 'Raleway'; }
-  .btn-wa {
-    display: flex; align-items: center; gap: 8px;
-    padding: 11px 20px;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-decoration: none;
-    cursor: none;
-    transition: transform 0.3s, box-shadow 0.3s;
-    white-space: nowrap;
+  .product-price { font-family: 'Cinzel', serif; font-size: 16px; color: var(--gold); }
+  .product-price small { font-size: 10px; opacity: 0.6; letter-spacing: 0.1em; }
+  
+  .installment-tag {
+    display: block;
+    font-size: 10px;
+    color: var(--gold-light);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    font-style: italic;
   }
-  .btn-wa:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
-  .wa-icon { width: 16px; height: 16px; fill: #fff; }
 
-  /* SCENT NOTES */
-  .notes-section { max-width: 1100px; margin: 0 auto; }
-  .notes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 60px; }
+  .btn-wa {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .btn-wa:hover { transform: scale(1.1); background: var(--gold-light); }
+  .wa-icon { width: 20px; height: 20px; fill: var(--navy); }
+
+  /* NOTES SECTION */
+  .notes-section { max-width: 1200px; margin: 0 auto; }
+  .notes-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 40px; margin-top: 60px;
+  }
   .note-block {
-    padding: 48px 36px;
+    padding: 40px;
     background: var(--glass);
     border: 1px solid var(--glass-border);
     text-align: center;
-    transition: background 0.4s;
   }
-  .note-block:hover { background: rgba(201,169,110,0.1); }
-  .note-icon { font-size: 36px; margin-bottom: 20px; display: block; }
-  .note-block h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 14px; letter-spacing: 0.25em;
-    color: var(--gold); margin-bottom: 12px;
-  }
-  .note-block p { font-size: 12px; line-height: 1.9; opacity: 0.6; color: var(--cream); }
-
-  /* TESTIMONIALS */
-  .testimonials-section { background: var(--mid-blue); text-align: center; }
-  .testimonials-inner { max-width: 900px; margin: 0 auto; }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 60px; }
-  .testimonial {
-    padding: 36px;
-    background: rgba(10,14,26,0.5);
-    border: 1px solid var(--glass-border);
-    text-align: left;
-  }
-  .testimonial-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; font-style: italic;
-    line-height: 1.8; color: var(--cream);
-    margin-bottom: 20px;
-  }
-  .testimonial-name {
-    font-family: 'Cinzel', serif;
-    font-size: 11px; letter-spacing: 0.25em;
-    color: var(--gold);
-  }
-  .stars { color: var(--gold); font-size: 12px; margin-bottom: 14px; letter-spacing: 4px; }
-
-  /* ORDER / WHATSAPP CTA */
-  .order-section {
-    text-align: center;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--mid-blue) 50%, var(--navy) 100%);
-    position: relative; overflow: hidden;
-  }
-  .order-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 70%);
-  }
-  .order-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-  .wa-cta-big {
-    display: inline-flex; align-items: center; gap: 14px;
-    padding: 20px 52px;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 14px; letter-spacing: 0.25em;
-    text-decoration: none;
-    margin-top: 40px;
-    cursor: none;
-    position: relative; overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .wa-cta-big:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(37,211,102,0.35); }
-  .wa-cta-big svg { width: 24px; height: 24px; fill: white; }
-  .wa-note { font-size: 11px; opacity: 0.5; margin-top: 16px; letter-spacing: 0.2em; }
+  .note-icon { font-size: 32px; display: block; margin-bottom: 20px; }
+  .note-block h3 { font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: 0.2em; margin-bottom: 16px; color: var(--gold); }
+  .note-block p { font-size: 13px; line-height: 1.8; color: var(--cream); opacity: 0.7; }
 
   /* FOOTER */
   footer {
     padding: 60px;
     border-top: 1px solid var(--glass-border);
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto;
   }
-  .footer-brand {
-    font-family: 'Cinzel', serif;
-    font-size: 20px; color: var(--gold); letter-spacing: 0.2em;
-  }
-  .footer-brand small { display: block; font-family: 'Raleway'; font-size: 9px; letter-spacing: 0.4em; color: var(--white); opacity: 0.4; margin-top: 4px; }
   .footer-links { display: flex; gap: 32px; }
   .footer-links a { font-size: 10px; letter-spacing: 0.3em; color: var(--white); opacity: 0.4; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s, color 0.3s; }
   .footer-links a:hover { opacity: 1; color: var(--gold); }
@@ -529,7 +469,7 @@
   <a class="nav-logo" href="#">LUXE OPIUM <span>ESSENCE OF ELEGANCE</span></a>
   <ul class="nav-links">
     <li><a href="#collection">Collection</a></li>
-    <li><a href="#notes">Scent Notes</a></li>
+    <li><a href="#notes">Why Us</a></li>
     <li><a href="#story">Story</a></li>
     <li><a href="#order">Order Now</a></li>
   </ul>
@@ -547,7 +487,7 @@
   <p class="hero-desc">Discover the world's finest fragrances from over 130 bestselling and luxury brands. Premium quality, unbeatable prices, and express delivery to your door.</p>
   <div class="hero-cta">
     <a href="#collection" class="btn-primary"><span style="position:relative;z-index:1">Explore Collection</span></a>
-    <a href="#order" class="btn-secondary">Order via WhatsApp</a>
+    <a href="https://wa.link/up9njj" class="btn-secondary">Order via WhatsApp</a>
   </div>
 
   <div class="scroll-hint">
@@ -582,8 +522,8 @@
       <h2 class="section-title">Born from the<br>Heart of Desire</h2>
       <div class="section-line"></div>
       <p>LUXE OPIUM is your premier destination for authentic designer and luxury fragrances. We stock over 130 bestselling brands including Rabanne, Gucci, HUGO BOSS, Mugler, and Marc Jacobs, alongside luxury houses like Dior, Tom Ford, Guerlain, Hermès, and Maison Margiela. Whether you seek a signature scent or a gift for someone special, we offer unbeatable prices and an unmatched selection.</p>
-      <p>We believe in making luxury accessible. With Click and Collect in 30 minutes, Next Day Delivery, and Express options even during our busiest periods, your perfect fragrance is always within reach. Every bottle is authentic, every experience exceptional.
-      <a href="#order" class="btn-primary" style="margin-top:12px;display:inline-block"><span style="position:relative;z-index:1">Shop Now</span></a>
+      <p>We believe in making luxury accessible. With Next Day Delivery and Express options even during our busiest periods, your perfect fragrance is always within reach. Every bottle is authentic, every experience exceptional.</p>
+      <a href="#collection" class="btn-primary" style="margin-top:12px;display:inline-block"><span style="position:relative;z-index:1">Shop Now</span></a>
     </div>
     <div class="about-visual">
       <div class="about-orb">
@@ -606,75 +546,86 @@
   </div>
   <div class="products-grid">
 
-    <!-- Product 1 -->
-      <div class="product-card">
+    <!-- Product 1: YSL Myself -->
+    <div class="product-card">
       <div class="product-img">
-        <img src="assets/dior_sauvage.jpg" alt="Dior Sauvage" style="width: 100%; height: 100%; object-fit: cover;">
-        <span class="product-badge">BESTSELLER</span>
+        <img src="assets/ysl_myself.png" alt="YSL Myself">
+        <span class="product-badge">FEATURED</span>
       </div>
       <div class="product-info">
-        <h3 class="product-name">Dior Sauvage</h3>
-        <p class="product-tagline">The Timeless Classic</p>
-        <p class="product-desc">An iconic fragrance that defines modern masculinity. Fresh, spicy, and effortlessly sophisticated with ambroxan, ambrette seed, and pepper. A signature scent for the discerning gentleman.</p>
-        <div class="product-notes">
-          <span class="note-tag">Ambroxan</span>
-          <span class="note-tag">Pepper</span>
-          <span class="note-tag">Ambrette Seed</span>
-        </div>
+        <h3 class="product-name">YSL Myself</h3>
+        <p class="product-tagline">Modern Masculinity</p>
+        <p class="product-desc">A statement of modern masculinity. A woody floral fragrance that is both fresh and sensual, capturing the essence of the contemporary man.</p>
         <div class="product-footer">
-          <div class="product-price">From ₦45,000 <small>/ 100ml</small></div>
+          <div class="product-price">
+            ₦386,400
+            <span class="installment-tag">Installment payments available</span>
+          </div>
           <a href="https://wa.link/up9njj" class="btn-wa" target="_blank">
             <svg viewBox="0 0 24 24" class="wa-icon"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Order Now
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Product 2 -->
+    <!-- Product 2: Bvlgari Men in Black -->
     <div class="product-card">
       <div class="product-img">
-        <img src="assets/gucci_bloom.jpg" alt="Gucci Bloom" style="width: 100%; height: 100%; object-fit: cover;">
-        <span class="product-badge">NEW</span>
+        <img src="assets/bvlgari_man_in_black.png" alt="Bvlgari Men in Black">
       </div>
       <div class="product-info">
-        <h3 class="product-name">Gucci Bloom</h3>
-        <p class="product-tagline">Floral Elegance Redefined</p>
-        <p class="product-desc">A lush floral composition celebrating femininity and sensuality. Tuberose, jasmine, and rangoon creeper create an intoxicating bouquet. Perfect for those who embrace their power and beauty.</p>
-        <div class="product-notes">
-          <span class="note-tag">Tuberose</span>
-          <span class="note-tag">Jasmine</span>
-          <span class="note-tag">Floral</span>
-        </div>
+        <h3 class="product-name">Bvlgari Men in Black</h3>
+        <p class="product-tagline">Bold & Intense</p>
+        <p class="product-desc">An intense composition of amber, leather, spices and wood. It opens with accords of natural rum and luminous spices.</p>
         <div class="product-footer">
-          <div class="product-price">From ₦38,000 <small>/ 100ml</small></div>
+          <div class="product-price">
+            ₦203,000
+            <span class="installment-tag">Installment payments available</span>
+          </div>
           <a href="https://wa.link/up9njj" class="btn-wa" target="_blank">
             <svg viewBox="0 0 24 24" class="wa-icon"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Order Now
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Product 3 -->
+    <!-- Product 3: Club de Nuit -->
     <div class="product-card">
       <div class="product-img">
-        <img src="assets/tom_ford_black_orchid.png" alt="Tom Ford Black Orchid" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="assets/club_de_nuit.png" alt="Club de Nuit">
       </div>
       <div class="product-info">
-        <h3 class="product-name">Tom Ford Black Orchid</h3>
-        <p class="product-tagline">Luxury Redefined</p>
-        <p class="product-desc">An exotic and sensual fragrance with black orchid, dark chocolate, and spices. A bold statement for those who appreciate the finer things in life. Uncompromising quality and elegance.</p>
-        <div class="product-notes">
-          <span class="note-tag">Black Orchid</span>
-          <span class="note-tag">Dark Chocolate</span>
-          <span class="note-tag">Spices</span>
-        </div>
+        <h3 class="product-name">Club de Nuit</h3>
+        <p class="product-tagline">Iconic Scent</p>
+        <p class="product-desc">A provocative woody spicy masculine fragrance that opens with fresh fruity notes of lemon, apple and blackcurrant.</p>
         <div class="product-footer">
-          <div class="product-price">From ₧52,000 <small>/ 100ml</small></div>
+          <div class="product-price">
+            ₦90,000
+            <span class="installment-tag">Installment payments available</span>
+          </div>
           <a href="https://wa.link/up9njj" class="btn-wa" target="_blank">
             <svg viewBox="0 0 24 24" class="wa-icon"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Order Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4: Parfums de Marly -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="assets/parfums_de_marly.png" alt="Parfums de Marly">
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Parfums de Marly</h3>
+        <p class="product-tagline">125ml — Pure Luxury</p>
+        <p class="product-desc">A noble fragrance with a powerful and refined trail. A signature scent that embodies the spirit of the 18th century.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            ₦714,000
+            <span class="installment-tag">Installment payments available</span>
+          </div>
+          <a href="https://wa.link/up9njj" class="btn-wa" target="_blank">
+            <svg viewBox="0 0 24 24" class="wa-icon"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           </a>
         </div>
       </div>
@@ -683,7 +634,7 @@
   </div>
 </section>
 
-<!-- SCENT NOTES -->
+<!-- WHY CHOOSE US -->
 <section id="notes">
   <div class="notes-section">
     <div style="text-align:center;max-width:500px;margin:0 auto">
@@ -698,91 +649,58 @@
         <p>From bestselling names like Gucci, HUGO BOSS, and Rabanne to luxury houses like Dior, Tom Ford, and Guerlain. Authentic fragrances for every taste and budget.</p>
       </div>
       <div class="note-block">
-        <span class="note-icon">🚀</span>
-        <h3>Express Delivery</h3>
-        <p>Click and Collect in 30 minutes, Next Day Delivery, or Express options. We maintain fast service even during our busiest periods.</p>
+        <span class="note-icon">💳</span>
+        <h3>Flexible Payment</h3>
+        <p>Enjoy our installment payment options on all luxury fragrances. Own your signature scent today and pay with ease.</p>
       </div>
       <div class="note-block">
-        <span class="note-icon">💵</span>
-        <h3>Unbeatable Prices</h3>
-        <p>Premium quality at prices that won't break the bank. Discover luxury fragrances without the luxury price tag. Authentic, always.</p>
+        <span class="note-icon">🚀</span>
+        <h3>Express Delivery</h3>
+        <p>Next Day Delivery or Express options available. We maintain fast service even during our busiest periods to ensure you get your scent on time.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="testimonials-inner">
-    <span class="section-label">What They Say</span>
-    <h2 class="section-title">Voices of Elegance</h2>
-    <div class="section-line" style="margin:0 auto"></div>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"Dior Sauvage from Luxe Opium is authentic and at the best price I have found anywhere. The Click and Collect service is a game-changer!"</p>
-        <span class="testimonial-name">— Adaeze O., Lagos</span>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"I ordered Gucci Bloom and received it the next day. The quality is impeccable and the price was unbeatable. Luxe Opium is now my go-to for fragrances."</p>
-        <span class="testimonial-name">— Chidi M., Abuja</span>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-quote">"Tom Ford Black Orchid arrived in perfect condition with beautiful packaging. The team on WhatsApp was so helpful in choosing the right scent for me!"</p>
-        <span class="testimonial-name">— Fatima B., Port Harcourt</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ORDER CTA -->
-<section class="order-section" id="order">
-  <div class="order-inner">
-    <span class="section-label">Ready to Indulge?</span>
-    <h2 class="section-title">Order Your Luxury Scent</h2>
-    <div class="section-line" style="margin:0 auto 24px"></div>
-    <p style="font-size:14px;line-height:2;opacity:0.7;max-width:500px;margin:0 auto">Chat with our team on WhatsApp for personalized fragrance recommendations, gift wrapping options, and express delivery. Click and Collect in 30 minutes, or enjoy Next Day and Express delivery nationwide.</p>
-    <a href="https://wa.link/up9njj" class="wa-cta-big" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      Chat on WhatsApp
-    </a>
-    <p class="wa-note">Nationwide delivery · Same day dispatch · Gift wrapping available</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">LUXE OPIUM <small>ESSENCE OF ELEGANCE</small></div>
+  <div class="footer-copy">© 2026 LUXE OPIUM. All Rights Reserved.</div>
   <div class="footer-links">
-    <a href="#collection">Collection</a>
-    <a href="#story">Story</a>
-    <a href="#notes">Scent Notes</a>
-    <a href="#order">Order</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="https://wa.link/up9njj">Contact Us</a>
   </div>
-  <span class="footer-copy">© 2026 LUXE OPIUM</span>
 </footer>
 
 <script>
-  // Custom cursor
+  // Custom Cursor
   const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.transform = `translate(${mx-5}px,${my-5}px)`; });
-  function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx-18}px,${ry-18}px)`; requestAnimationFrame(animRing); } animRing();
-
-  // Nav scroll
-  window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+  const cursorRing = document.getElementById('cursorRing');
+  
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
+    cursorRing.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
+  });
 
   // Particles
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 22; i++) {
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    p.style.cssText = `left:${Math.random()*100}%;width:${Math.random()*2+1}px;height:${Math.random()*2+1}px;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*10}s;`;
-    container.appendChild(p);
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    p.style.animationDelay = Math.random() * 5 + 's';
+    particlesContainer.appendChild(p);
   }
+
+  // Nav Scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      document.getElementById('nav').classList.add('scrolled');
+    } else {
+      document.getElementById('nav').classList.remove('scrolled');
+    }
+  });
 </script>
+
 </body>
 </html>
