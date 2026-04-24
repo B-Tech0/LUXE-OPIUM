@@ -365,6 +365,31 @@
   <!-- Pagination buttons will be loaded here -->
 </div>
 
+<!-- LEAD CAPTURE POPUP -->
+<div class="modal" id="leadModal">
+  <div class="modal-content" style="max-width: 500px; grid-template-columns: 1fr;">
+    <button class="modal-close" id="closeLeadModal">&times;</button>
+    <div class="modal-info" style="padding: 60px 40px;">
+      <h2 class="modal-name" style="font-size: 24px; margin-bottom: 15px;">Welcome to LUXE OPIUM</h2>
+      <p class="modal-text" style="margin-bottom: 30px; opacity: 0.7;">Before exploring our exclusive collection, please share your contact information. We'll use this to provide personalized recommendations and updates on new arrivals.</p>
+      
+      <form id="leadForm" style="display: flex; flex-direction: column; gap: 20px;">
+        <div>
+          <label style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); display: block; margin-bottom: 8px;">Email Address</label>
+          <input type="email" id="leadEmail" placeholder="your@email.com" required style="width: 100%; padding: 12px; background: var(--glass); border: 1px solid var(--glass-border); color: var(--white); font-family: 'Raleway', sans-serif; outline: none;">
+        </div>
+        
+        <div>
+          <label style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); display: block; margin-bottom: 8px;">Phone / WhatsApp Number</label>
+          <input type="tel" id="leadPhone" placeholder="+234 (0)XXX XXX XXXX" required style="width: 100%; padding: 12px; background: var(--glass); border: 1px solid var(--glass-border); color: var(--white); font-family: 'Raleway', sans-serif; outline: none;">
+        </div>
+        
+        <button type="submit" class="btn-checkout" style="margin-top: 10px;">Continue to Collection</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="overlay" id="overlay"></div>
 
 <!-- PRODUCT MODAL -->
@@ -659,6 +684,39 @@
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     const message = `Hello LUXE OPIUM, I would like to order:\n\n${cart.map(i => `- ${i.name} (${i.brand}): ₦${i.price.toLocaleString()}`).join('\n')}\n\nTotal: ₦${total.toLocaleString()}\n\nPlease provide payment details for installment or full payment.`;
     window.open(`https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  // Lead Capture Logic
+  const leadModal = document.getElementById('leadModal');
+  const leadForm = document.getElementById('leadForm');
+  const leadsShown = localStorage.getItem('luxe_opium_lead_shown');
+
+  if (!leadsShown) {
+    leadModal.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('closeLeadModal').onclick = () => {
+    leadModal.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  };
+
+  leadForm.onsubmit = (e) => {
+    e.preventDefault();
+    const email = document.getElementById('leadEmail').value;
+    const phone = document.getElementById('leadPhone').value;
+    
+    // Save lead
+    let leads = JSON.parse(localStorage.getItem('luxe_opium_leads')) || [];
+    leads.push({ email, phone, timestamp: new Date().toISOString() });
+    localStorage.setItem('luxe_opium_leads', JSON.stringify(leads));
+    localStorage.setItem('luxe_opium_lead_shown', 'true');
+    
+    leadModal.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
   };
 
   loadPerfumes();
